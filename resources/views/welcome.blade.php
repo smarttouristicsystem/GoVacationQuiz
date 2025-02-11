@@ -37,7 +37,9 @@
         {{-- <h1 class="text-center mb-4">GoVacation</h1> --}}
         <div class="row justify-content-center">
             @foreach($companies as $company)
-                <x-company-card :company="$company" />
+                @if ($company->is_active)
+                    <x-company-card :company="$company" />
+                @endif
             @endforeach
         </div>
 

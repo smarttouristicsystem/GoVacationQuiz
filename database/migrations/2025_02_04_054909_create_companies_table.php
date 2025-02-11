@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('company_logo')->nullable();
             $table->string('company_branch');
             $table->text('description');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

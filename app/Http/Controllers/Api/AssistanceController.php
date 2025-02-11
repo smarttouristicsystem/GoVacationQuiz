@@ -4,18 +4,21 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use App\Models\Company;
-use Illuminate\Support\Facades\Storage;
 
-class CompanyController extends Controller
+
+class AssistanceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        $companies = Company::paginate(5);
-        return view('welcome', compact('companies'));
+        {
+            $company = Company::first();
+            return view('assistance.index', compact('company'));
+        }
     }
 
     /**
@@ -39,8 +42,7 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        $company = Company::findOrFail($id);
-        return view('company.show', compact('company'));    
+        //
     }
 
     /**
