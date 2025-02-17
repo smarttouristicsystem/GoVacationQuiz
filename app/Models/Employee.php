@@ -14,6 +14,19 @@ class Employee extends Model
         'position',
         'profile_photo',
         'description',
-        'is_active'
+        'is_active',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public static function getEmployeesByCategory($categoryName)
+    {
+        return self::whereHas('category', function ($query) use ($categoryName) {
+            $query->where('name', $categoryName);
+        })->orderBy('id')->get();
+    }
 }

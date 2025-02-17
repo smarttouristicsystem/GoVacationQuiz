@@ -4,24 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
-use App\Models\Company;
-use App\Models\Assistance;
+use App\Models\Category;
+use App\Models\Employee;
 
-
-class AssistanceController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Category $category)
     {
-        {
-            $company = Company::first();
-            //$company = Company::paginate(5);
-            $assistances = Assistance::all();
-            return view('assistance.index', compact('company', 'assistances'));
-        }
+        $employees = Employee::where('category_id', $category->id)->get();
+        return view('employees.index', compact('category', 'employees'));
     }
 
     /**

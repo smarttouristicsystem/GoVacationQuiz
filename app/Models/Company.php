@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Storage;
 
 class Company extends Model
 {
@@ -16,4 +17,15 @@ class Company extends Model
         'description',
         'is_active'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($company) {
+            if ($company->company_logo) {
+                Storage::disk('public')->delete($company->company_logo);
+            }
+        });
+    }   
 }

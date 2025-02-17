@@ -14,20 +14,16 @@
     <p class="fw-bold fs-6 mb-3">What Type of Assistance or Expertise Are You Looking For?</p>
 
     {{-- Pilihan Bantuan --}}
-<div class="d-grid gap-3 mx-auto" style="max-width: 500px; margin-top: 36px;">
-    <button class="btn btn-light border rounded-pill py-2 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" style="font-size: 14px; margin-bottom: 5px;">
-        Major Accounts, Hotel Partnership, or Strategic Collaboration
-    </button>
-    <button class="btn btn-light border rounded-pill py-2 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" style="font-size: 14px; margin-bottom: 5px;">
-        Roundtrips, Tailor-Made Products, and Enhancing Destination Offerings
-    </button>
-    <button class="btn btn-light border rounded-pill py-2 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" style="font-size: 14px; margin-bottom: 5px;">
-        Partnership, New Collaboration, and Connectivity
-    </button>
-    <button class="btn btn-light border rounded-pill py-2 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" style="font-size: 14px; margin-bottom: 5px;">
-        Hotel Contracts, Portfolio, and Special Offers
-    </button>
-</div>
+    <div class="d-grid gap-3 mx-auto" style="max-width: 500px; margin-top: 36px;">
+        @forelse ($assistances as $assistance)
+        <button class="btn btn-light border rounded-pill py-2 shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" style="font-size: 14px; margin-bottom: 5px;">
+                {{ $assistance->name }}
+            </button>
+        @empty
+            <p class="text-muted">No assistance available at the moment.</p>
+        @endforelse
+    </div>
+
 
 
     {{-- Section Need More Information --}}
