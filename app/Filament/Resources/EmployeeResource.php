@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\Category;
 
 class EmployeeResource extends Resource
 {
@@ -26,6 +27,8 @@ class EmployeeResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Toggle::make('is_active')
+                    ->required(),
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
@@ -38,6 +41,8 @@ class EmployeeResource extends Resource
                 Forms\Components\FileUpload::make('profile_photo')
                     ->image()
                     ->directory('employee-photos')
+                    ->preserveFilenames()
+                    ->dehydrated()
                     ->maxSize(2048),
             ]);
     }
@@ -58,7 +63,9 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->wrap()
                     ->limit(75)
-                    ->tooltip(fn ($record) => $record->description),
+                    ->tooltip(fn($record) => $record->description),
+                Tables\Columns\IconColumn::make('is_active')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

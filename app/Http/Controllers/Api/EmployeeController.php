@@ -4,22 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
-use App\Models\Company;
-use App\Models\Assistance;
+use App\Models\Category;
+use App\Models\Employee;
 
-
-class AssistanceController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
-    { {
-            $assistances = Assistance::all();
-            $company = Company::first();
-            return view('assistance.index', compact('assistances', 'company'));
-        }
+    public function index()
+    {
+        //
     }
 
     /**
@@ -43,9 +38,7 @@ class AssistanceController extends Controller
      */
     public function show(string $id)
     {
-        $assistance = Assistance::with('employee')->findOrFail($id);
-        $company = Company::first();
-        return view('assistance.show', compact('assistance', 'company'));
+        //
     }
 
     /**

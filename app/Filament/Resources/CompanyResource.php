@@ -37,6 +37,7 @@ class CompanyResource extends Resource
                 Forms\Components\FileUpload::make('company_logo')
                     ->image()
                     ->directory('company-logos')
+                    ->preserveFilenames()
                     ->dehydrated()
                     ->maxSize(2048),
                 Forms\Components\TextInput::make('description')
