@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Employee extends Model
 {
@@ -14,19 +16,11 @@ class Employee extends Model
         'position',
         'profile_photo',
         'description',
-        'is_active',
-        'category_id'
+        'is_active'
     ];
 
-    public function category()
+    public function assistances(): HasMany
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public static function getEmployeesByCategory($categoryName)
-    {
-        return self::whereHas('category', function ($query) use ($categoryName) {
-            $query->where('name', $categoryName);
-        })->orderBy('id')->get();
+        return $this->hasMany(Assistance::class);
     }
 }

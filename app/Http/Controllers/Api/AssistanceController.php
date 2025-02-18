@@ -15,12 +15,10 @@ class AssistanceController extends Controller
      * Display a listing of the resource.
      */
     public function index(): View
-    {
-        {
-            $company = Company::first();
-            //$company = Company::paginate(5);
+    { {
             $assistances = Assistance::all();
-            return view('assistance.index', compact('company', 'assistances'));
+            $company = Company::first();
+            return view('assistance.index', compact('assistances', 'company'));
         }
     }
 
@@ -45,7 +43,9 @@ class AssistanceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $assistance = Assistance::with('employee')->findOrFail($id);
+        $company = Company::first();
+        return view('assistance.show', compact('assistance', 'company'));
     }
 
     /**

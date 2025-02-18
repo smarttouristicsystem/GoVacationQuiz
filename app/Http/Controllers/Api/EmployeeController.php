@@ -12,10 +12,9 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Category $category)
+    public function index()
     {
-        $employees = Employee::where('category_id', $category->id)->get();
-        return view('employees.index', compact('category', 'employees'));
+        //
     }
 
     /**

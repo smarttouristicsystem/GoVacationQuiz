@@ -17,7 +17,12 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('assistances', function (Blueprint $table) {
+            $table->foreignId('employee_id')->nullable()->constrained('employees')->onDelete('cascade');
+        });
     }
+
 
     /**
      * Reverse the migrations.
@@ -25,5 +30,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('assistances');
+        Schema::table('assistances', function (Blueprint $table) {
+            $table->dropForeign(['employee_id']);
+            $table->dropColumn('employee_id');
+        });
     }
 };

@@ -38,15 +38,11 @@ class EmployeeResource extends Resource
                 Forms\Components\TextInput::make('description')
                     ->required()
                     ->maxLength(5000),
-                Forms\Components\Select::make('category_id')
-                    ->label('Category')
-                    ->options(Category::pluck('name', 'id'))
-                    ->searchable()
-                    ->required()
-                    ->preload(),
                 Forms\Components\FileUpload::make('profile_photo')
                     ->image()
                     ->directory('employee-photos')
+                    ->preserveFilenames()
+                    ->dehydrated()
                     ->maxSize(2048),
             ]);
     }
@@ -67,13 +63,9 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('description')
                     ->wrap()
                     ->limit(75)
-                    ->tooltip(fn ($record) => $record->description),
+                    ->tooltip(fn($record) => $record->description),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('Category')
-                    ->sortable()
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
