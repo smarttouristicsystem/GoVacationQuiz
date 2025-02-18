@@ -13,6 +13,7 @@ class Employee extends Model
         'email',
         'position',
         'profile_photo',
-        'description'
+        'description',
+        'is_active'
     ];
 }

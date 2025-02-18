@@ -13,6 +13,7 @@ class Company extends Model
         'abv',
         'company_branch',
         'company_logo',
-        'description'
+        'description',
+        'is_active'
     ];
 }
