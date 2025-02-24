@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Employee extends Model
 {
@@ -13,6 +15,12 @@ class Employee extends Model
         'email',
         'position',
         'profile_photo',
-        'description'
+        'description',
+        'is_active'
     ];
+
+    public function assistances(): HasMany
+    {
+        return $this->hasMany(Assistance::class);
+    }
 }

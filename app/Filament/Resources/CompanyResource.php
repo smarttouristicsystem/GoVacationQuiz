@@ -26,19 +26,23 @@ class CompanyResource extends Resource
                 Forms\Components\TextInput::make('company_name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Toggle::make('is_active')
+                    ->required(),
                 Forms\Components\TextInput::make('abv')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('company_branch')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('description')
-                    ->required()
-                    ->maxLength(5000),
                 Forms\Components\FileUpload::make('company_logo')
                     ->image()
                     ->directory('company-logos')
+                    ->preserveFilenames()
+                    ->dehydrated()
                     ->maxSize(2048),
+                Forms\Components\TextInput::make('description')
+                    ->required()
+                    ->maxLength(5000),
             ]);
     }
 
@@ -57,6 +61,8 @@ class CompanyResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
+                Tables\Columns\IconColumn::make('is_active')
+                    ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

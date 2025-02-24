@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('profile_photo')->nullable();
             $table->string('position')->nullable();
             $table->text('description');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
