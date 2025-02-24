@@ -5,7 +5,11 @@
 @section('content')
     <div class="container text-center py-5">
         {{-- Logo Perusahaan --}}
+<<<<<<< HEAD
         <img src="{{ asset('public/assets/company-logos/logo-govac.png') }}" alt="{{ $company->company_branch }}"
+=======
+        <img src="{{ asset('storage/' . $company->company_logo) }}" alt="{{ $company->company_branch }}"
+>>>>>>> 8bb4c43b877eae3f52c8d84d69ea1b2c8d532118
             class="img-fluid d-block mx-auto" style="max-width: 180px; margin-bottom: 50px; margin-top: 50px">
 
         {{-- Judul --}}
@@ -16,7 +20,11 @@
             @if ($assistance->employee && $assistance->employee->name)
                 {{-- Foto Profil --}}
                 <div class="d-flex align-items-center text-start bg-white" style="max-width: 750px; width: 100%;">
+<<<<<<< HEAD
                     <img src="{{ asset($assistance->employee->profile_photo ? Storage::url($assistance->employee->profile_photo) : 'images/default-profile.png') }}"
+=======
+                    <img src="{{ asset($assistance->employee->profile_photo ? 'storage/' . $assistance->employee->profile_photo : 'images/default-profile.png') }}"
+>>>>>>> 8bb4c43b877eae3f52c8d84d69ea1b2c8d532118
                         alt="{{ $assistance->employee->name }}" class="rounded-circle me-3"
                         style="width: 200px; height: 200px; object-fit: cover; flex-shrink: 0;">
 

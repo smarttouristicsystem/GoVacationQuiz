@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\Company;
 use App\Models\Employee;
 use App\Models\Assistance;
+=======
+use App\Models\Category;
+use App\Models\Employee;
+>>>>>>> 8bb4c43b877eae3f52c8d84d69ea1b2c8d532118
 
 class EmployeeController extends Controller
 {
@@ -15,10 +20,14 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $employees = Employee::all();
         $company = Company::first();
         $assistance = Assistance::all();
         return view('employees.index', compact('employees', 'company', 'assistance'));
+=======
+        //
+>>>>>>> 8bb4c43b877eae3f52c8d84d69ea1b2c8d532118
     }
 
     /**
